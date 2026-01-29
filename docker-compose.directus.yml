@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  directus:
+    image: directus/directus:latest
+    container_name: directus-local
+    ports:
+      - "8055:8055"
+    volumes:
+      - ./directus-data/uploads:/directus/uploads
+      - ./directus-data/extensions:/directus/extensions
+    environment:
+      KEY: "replace-with-random-value"
+      SECRET: "replace-with-another-random-value"
+      DB_CLIENT: "sqlite3"
+      DB_FILENAME: "/directus/database/data.db"
+      ADMIN_EMAIL: "cms@admin.com"
+      ADMIN_PASSWORD: "cms2003"
+      WEBSOCKETS_ENABLED: "true"
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    external: true
